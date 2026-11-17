@@ -1,0 +1,251 @@
+/*
+ * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
+ * Keep every @import in this top block. Web fonts load via <link> in src/routes/__root.tsx.
+ */
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * RCOVA AI design system — dark only.
+ * Palette comes from the brand brief and is expressed in oklch.
+ */
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-electric: var(--electric);
+  --color-lavender: var(--lavender);
+  --color-success: var(--success);
+  --color-google: var(--google);
+  --color-google-foreground: var(--google-foreground);
+  --color-google-border: var(--google-border);
+  --color-warning: var(--warning);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  color-scheme: dark;
+  --radius: 0.875rem;
+
+  /* Brand palette */
+  --background: oklch(0.153 0.015 284.5); /* #0B0B12 */
+  --surface: oklch(0.183 0.022 284); /* #11111C */
+  --card: oklch(0.218 0.019 284.7); /* #191923 */
+  --primary: oklch(0.524 0.243 290.1); /* #7138E8 */
+  --electric: oklch(0.61 0.212 259.8); /* #287BFF */
+  --lavender: oklch(0.763 0.135 294.6); /* #B8A0FF */
+  --foreground: oklch(1 0 0); /* #FFFFFF */
+  --muted-foreground: oklch(0.731 0.026 285.7); /* #A6A6B8 */
+  --border: oklch(0.288 0.027 284.6); /* #292938 */
+
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.2 0.02 284.5);
+  --popover-foreground: var(--foreground);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.25 0.025 284.6);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.233 0.022 284.6);
+  --accent: oklch(0.26 0.04 288);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.65 0.2 22);
+  --destructive-foreground: oklch(1 0 0);
+  --success: oklch(0.75 0.15 160);
+  --warning: oklch(0.82 0.14 80);
+  /* Google sign-in button, dark theme per Google branding (#131314 / #E3E3E3 / #8E918F) */
+  --google: oklch(0.192 0.002 286);
+  --google-foreground: oklch(0.91 0.003 248);
+  --google-border: oklch(0.65 0.005 160);
+  --input: var(--border);
+  --ring: var(--lavender);
+
+  --chart-1: var(--primary);
+  --chart-2: var(--electric);
+  --chart-3: var(--lavender);
+  --chart-4: oklch(0.75 0.15 160);
+  --chart-5: oklch(0.82 0.14 80);
+
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--lavender);
+
+  /* Gradients, glows, shadows */
+  --gradient-brand: linear-gradient(120deg, var(--primary) 0%, var(--electric) 100%);
+  --gradient-text: linear-gradient(
+    100deg,
+    var(--foreground) 10%,
+    var(--lavender) 55%,
+    var(--electric) 100%
+  );
+  --gradient-card: linear-gradient(
+    160deg,
+    color-mix(in oklab, var(--card) 92%, var(--primary)) 0%,
+    var(--card) 60%
+  );
+  --gradient-hero:
+    radial-gradient(
+      60% 50% at 70% 30%,
+      color-mix(in oklab, var(--primary) 35%, transparent) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      45% 40% at 20% 70%,
+      color-mix(in oklab, var(--electric) 22%, transparent) 0%,
+      transparent 70%
+    );
+  --shadow-glow:
+    0 0 0 1px color-mix(in oklab, var(--primary) 40%, transparent),
+    0 12px 40px -12px color-mix(in oklab, var(--primary) 60%, transparent);
+  --shadow-card:
+    0 1px 0 0 color-mix(in oklab, var(--foreground) 5%, transparent) inset,
+    0 20px 50px -30px oklch(0 0 0 / 0.8);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 55%, transparent);
+  }
+}
+
+@utility bg-gradient-brand {
+  background-image: var(--gradient-brand);
+}
+
+@utility bg-gradient-card {
+  background-image: var(--gradient-card);
+}
+
+@utility bg-hero-glow {
+  background-image: var(--gradient-hero);
+}
+
+@utility text-gradient {
+  background-image: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--border) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--border) 55%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 75%);
+}
+
+/* Premium bordered surface used by cards across the site */
+@utility surface-card {
+  background-image: var(--gradient-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-card);
+}
+
+@utility surface-interactive {
+  transition:
+    border-color 200ms ease,
+    transform 200ms ease,
+    box-shadow 200ms ease;
+  &:hover {
+    border-color: color-mix(in oklab, var(--primary) 55%, var(--border));
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@utility animate-float {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
